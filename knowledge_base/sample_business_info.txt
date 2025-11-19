@@ -1,0 +1,65 @@
+SAMPLE BUSINESS INFORMATION
+===========================
+
+This is a sample knowledge base document. Replace this with your actual business information.
+
+BUSINESS HOURS
+--------------
+We are open Monday through Friday, 9:00 AM to 5:00 PM EST.
+We are closed on weekends and major holidays.
+
+CONTACT INFORMATION
+------------------
+Email: support@yourbusiness.com
+Phone: +1-555-0123
+Address: 123 Business Street, City, State 12345
+
+PRODUCTS AND SERVICES
+--------------------
+We offer the following services:
+- Service 1: Description of your first service
+- Service 2: Description of your second service
+- Service 3: Description of your third service
+
+PRICING
+-------
+Our pricing starts at $99/month for the basic plan.
+We also offer:
+- Standard Plan: $199/month
+- Premium Plan: $399/month
+
+All plans include 24/7 customer support.
+
+REFUND POLICY
+-------------
+We offer a 30-day money-back guarantee on all our products and services.
+To request a refund, please contact our support team within 30 days of purchase.
+
+FREQUENTLY ASKED QUESTIONS
+-------------------------
+
+Q: How do I get started?
+A: Simply sign up on our website and follow the onboarding process.
+
+Q: Do you offer customer support?
+A: Yes! We provide 24/7 customer support via email and chat.
+
+Q: Can I upgrade or downgrade my plan?
+A: Absolutely! You can change your plan at any time from your account settings.
+
+Q: What payment methods do you accept?
+A: We accept all major credit cards, PayPal, and bank transfers.
+
+SHIPPING INFORMATION
+-------------------
+We ship to all 50 US states and internationally.
+Standard shipping takes 3-5 business days.
+Express shipping is available for an additional fee.
+
+TECHNICAL SUPPORT
+----------------
+For technical issues, please contact support@yourbusiness.com
+Our technical team typically responds within 2 hours during business hours.
+
+---
+Last updated: 2025

@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: whatsapp-ai-bot
+    env: python
+    region: oregon
+    plan: free
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: TWILIO_ACCOUNT_SID
+        sync: false
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: TWILIO_WHATSAPP_NUMBER
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: LLM_PROVIDER
+        value: openai
+      - key: MAX_CONVERSATION_HISTORY
+        value: 10
+      - key: MAX_TOKENS
+        value: 1000
+      - key: TEMPERATURE
+        value: 0.7
