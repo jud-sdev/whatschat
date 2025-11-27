@@ -39,23 +39,44 @@ jobs:
           REPO="${{ github.repository }}"
           BRANCH="${{ github.ref_name }}"
 
-          # Prepare message with proper escaping
-          MESSAGE="🚀 *Deployment Alert*%0A%0A*Repository:* $REPO%0A*Branch:* $BRANCH%0A*Author:* $AUTHOR%0A*Commit:* $COMMIT_MSG%0A%0A$COMMIT_URL"
+          # Escape special characters for JSON
+          COMMIT_MSG_ESCAPED=$(echo "$COMMIT_MSG" | sed 's/"/\\"/g' | sed "s/'/\\'/g")
+
+          # Build message body
+          MESSAGE_BODY="🚀 *Deployment Alert*
+
+*Repository:* $REPO
+*Branch:* $BRANCH
+*Author:* $AUTHOR
+*Commit:* $COMMIT_MSG_ESCAPED
+
+$COMMIT_URL"
+
+          # Create JSON payload using jq for proper escaping
+          JSON_PAYLOAD=$(jq -n \
+            --arg msg_product "whatsapp" \
+            --arg recipient "$RECIPIENT_PHONE" \
+            --arg msg_type "text" \
+            --arg body "$MESSAGE_BODY" \
+            '{
+              messaging_product: $msg_product,
+              to: $recipient,
+              type: $msg_type,
+              text: {
+                preview_url: true,
+                body: $body
+              }
+            }')
+
+          echo "Sending notification..."
+          echo "Payload: $JSON_PAYLOAD"
 
           # Send to WhatsApp Cloud API
           RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
             "https://graph.facebook.com/v18.0/${WHATSAPP_PHONE_ID}/messages" \
             -H "Authorization: Bearer ${WHATSAPP_TOKEN}" \
             -H "Content-Type: application/json" \
-            -d "{
-              \"messaging_product\": \"whatsapp\",
-              \"to\": \"${RECIPIENT_PHONE}\",
-              \"type\": \"text\",
-              \"text\": {
-                \"preview_url\": true,
-                \"body\": \"🚀 *Deployment Alert*\n\n*Repository:* $REPO\n*Branch:* $BRANCH\n*Author:* $AUTHOR\n*Commit:* $COMMIT_MSG\n\n$COMMIT_URL\"
-              }
-            }")
+            -d "$JSON_PAYLOAD")
 
           # Extract HTTP status code
           HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
